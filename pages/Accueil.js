@@ -5,14 +5,17 @@ import { Button } from 'react-native-paper';
 const AccueilPage = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Envoyez et recevez de l'argent</Text>
-            <Text style={styles.text}>avec Wallet Test</Text>
-            <Image source={require('../assets/images/crypto.png')} style={styles.logo} />
+            <View style={{flex:1.5, justifyContent: 'center',alignItems:'center'}}>
+                <Image source={require('../assets/images/crypto.png')} style={styles.logo} />
+            </View>
+            <View style={{flex:1, padding:6}}>
+                <Text style={styles.text}>Envoyez et recevez de l'argent</Text>
+                <Text style={styles.text}>avec Wallet Test</Text>
 
-            <Text style={styles.sousTitre}>Wallet Test</Text>
-            <Button style={styles.button} mode="contained" onPress={() => navigation.navigate('Login')}>
-            Commencez
-            </Button>
+                <Button style={styles.button} mode="contained" onPress={() => navigation.navigate('Login')}>
+                Commencez
+                </Button>
+            </View>
         </View>
     )
 }
@@ -26,14 +29,16 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
     },
     text:{
-        fontSize:20,
+        fontSize:18,
         fontWeight:'bold',
         position:"relative",
-        top:"75%"
+        top:"60%"
     },
     logo:{
         width:300,
         height:220,
+        justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 130,
     },
     sousTitre:{

@@ -9,7 +9,6 @@ const mairie = require('../assets/image/mairie.png')
 const tresor = require('../assets/image/tresor.png')
 
 // Dummy
-const usFlag = require("../assets/images/us-flag.jpg");
 
 
 export default {
@@ -23,5 +22,4 @@ export default {
     mairie,
     tresor,
     // Dummy
-    usFlag
 }
