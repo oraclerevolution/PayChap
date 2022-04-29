@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "~1.15.0",
+    "@react-native-clipboard/clipboard": "^1.10.0",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-picker/picker": "^1.16.4",
@@ -23,13 +24,18 @@
     "expo-notifications": "~0.12.3",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.8.2",
-    "native-base": "^3.0.6",
+    "native-base": "^3.4.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
+    "react-native-credit-card-input": "^0.4.1",
+    "react-native-credit-card-ui": "^0.1.1",
+    "react-native-easy-grid": "^0.2.2",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-maps": "^0.30.1",
+    "react-native-otp": "^1.0.0",
+    "react-native-otp-inputs": "^7.1.1",
     "react-native-paper": "^4.9.2",
     "react-native-phone-number-input": "^2.1.0",
     "react-native-pin-view": "^3.0.2",
@@ -41,7 +47,8 @@
     "react-native-stepper-ui": "0.0.9",
     "react-native-toast-message": "^1.4.9",
     "react-native-vector-icons": "^8.1.0",
-    "react-native-web": "~0.13.12"
+    "react-native-web": "~0.13.12",
+    "rn-credit-card-ui": "^1.0.6"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
