@@ -22,8 +22,10 @@ import PreuvesPaiement from "./pages/PreuvesPaiement";
 import Signal from "./pages/Signals"
 import DetailsSignals from "./pages/DetailsSignals"
 import PasswordChoose from './pages/PasswordChoose';
-
-
+import ScreenOTP from './pages/ScreenOTP';
+import FormsData from './pages/FormsData';
+import Factures from './pages/Factures';
+import PaiementCanal from './pages/PaiementCanal';
 
 //creation de la navigation stack
 const NavigationStack = createStackNavigator();
@@ -68,6 +70,10 @@ export default function App() {
         <NavigationStack.Screen name="Accueil" component={AccueilPage} />
         <NavigationStack.Screen name="Steppers" component={SteppersPage} />
         <NavigationStack.Screen name="Login" component={LoginPage} />
+        <NavigationStack.Screen name="ScreenOTP" component={ScreenOTP} />
+        <NavigationStack.Screen name="Forms" component={FormsData} />
+        <NavigationStack.Screen name="Facture" component={Factures} />
+        <NavigationStack.Screen name="PaiementCanal" component={PaiementCanal} />
         <NavigationStack.Screen name="SignUp" component={InscriptionPage} />
         <NavigationStack.Screen name="Pricing" component={PricingPage} />
         <NavigationStack.Screen name="Checkout" component={Checkout} />
