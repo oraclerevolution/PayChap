@@ -13,7 +13,7 @@ const LoginPage = ({navigation}) => {
             <Text style={{fontSize:19, color:'gray', color:"#000", textAlign:"center", fontWeight:"bold"}}>Entrez un numéro de télephone pour commencez !</Text>
             <View style={styles.forms}>
                 <TextInput placeholder='+225 XXXXXXXXXX' keyboardType="numeric" label="Numéro de téléphone" value={number} style={{height:50}} />
-                <Button icon="login" style={styles.boutonLogin} mode="contained"  onPress={() => navigation.navigate('ScreenOTP')}>
+                <Button icon="login" style={styles.boutonLogin} mode="contained"  onPress={() => navigation.navigate('Forms')}>
                     Suivant
                 </Button>
             </View>

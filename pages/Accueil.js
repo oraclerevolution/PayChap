@@ -6,7 +6,7 @@ const AccueilPage = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={{flex:1.5, justifyContent: 'center',alignItems:'center'}}>
-                <Image source={require('../assets/images/crypto.png')} style={styles.logo} />
+                <Image source={require('../assets/logowallet.png')} style={styles.logo} />
             </View>
             <View style={{flex:1, padding:6}}>
                 <Text style={styles.text}>Envoyez et recevez de l'argent</Text>
@@ -35,8 +35,8 @@ const styles = StyleSheet.create({
         top:"60%"
     },
     logo:{
-        width:300,
-        height:220,
+        width:180,
+        height:180,
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 130,

@@ -48,6 +48,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     boutonLogin:{
-        marginTop:"5%"
+        marginTop:"5%",
+            width:150,
+            alignSelf:"center",
+            marginTop:25,
+            marginBottom:30,
+            backgroundColor:"#1E89E2"
     }
 })
