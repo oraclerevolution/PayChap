@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import { Text, StyleSheet, View, Platform, Alert, Image} from 'react-native'
 import {Button, TextInput} from 'react-native-paper'
 import Toast from 'react-native-toast-message';
@@ -7,19 +7,13 @@ import { Input } from 'react-native-elements';
 
 const LoginPage = ({navigation}) => {
     const [number, onChangeNumber] = React.useState('');
-    const [password, onChangePassword] = React.useState('');
-    const [buttonDisabled, setButtonDisabled] = React.useState(false)
 
     return (
         <View style={styles.container}>
-            <Image
-                source={require('../assets/images/login.png')}
-                style={styles.logo}
-            />
             <Text style={{fontSize:19, color:'gray', color:"#000", textAlign:"center", fontWeight:"bold"}}>Entrez un numéro de télephone pour commencez !</Text>
             <View style={styles.forms}>
-                <TextInput placeholder='+225 0709483463' />
-                <Button icon="login" style={styles.boutonLogin} mode="contained"  onPress={() => navigation.navigate('Password')}>
+                <TextInput placeholder='+225 XXXXXXXXXX' keyboardType="numeric" label="Numéro de téléphone" value={number} style={{height:50}} />
+                <Button icon="login" style={styles.boutonLogin} mode="contained"  onPress={() => navigation.navigate('ScreenOTP')}>
                     Suivant
                 </Button>
             </View>
@@ -31,8 +25,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        justifyContent:"center",
         padding:15,
+        paddingTop:"10%"
     },
     itemStyle:{
         marginTop:5
@@ -44,7 +38,7 @@ const styles = StyleSheet.create({
         fontSize:14
     },
     forms:{
-        marginTop:"10%",
+        marginTop:"5%",
         paddingRight:10
     },
     textinput:{
