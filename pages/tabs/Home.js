@@ -13,7 +13,7 @@ const Home = ({navigation}) => {
             color: "purple",
             backgroundColor: "purple",
             description: "Recharger",
-            page: ""
+            page: "ServiceRechargement"
         },
         {
             id: 2,

@@ -29,6 +29,8 @@ import PaiementCanal from './pages/PaiementCanal';
 import ChooseTransfer from './pages/ChooseTransfer';
 import TransferNational from './pages/TransfertNational/TransferNational';
 import PageTransfert from './pages/TransfertNational/PageTransfert';
+import ServiceRechargement from './pages/Rechargement/ServiceRechargement';
+import PageRecharge from './pages/Rechargement/PageRecharge';
 
 //creation de la navigation stack
 const NavigationStack = createStackNavigator();
@@ -80,6 +82,8 @@ export default function App() {
         <NavigationStack.Screen name="ChooseTransfer" component={ChooseTransfer} />
         <NavigationStack.Screen name="TransfertNational" component={TransferNational} />
         <NavigationStack.Screen name="TransfertNatMontant" component={PageTransfert} />
+        <NavigationStack.Screen name="ServiceRechargement" component={ServiceRechargement} />
+        <NavigationStack.Screen name="PageRecharge" component={PageRecharge} />
         <NavigationStack.Screen name="SignUp" component={InscriptionPage} />
         <NavigationStack.Screen name="Pricing" component={PricingPage} />
         <NavigationStack.Screen name="Checkout" component={Checkout} />

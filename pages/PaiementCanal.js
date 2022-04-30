@@ -11,7 +11,7 @@ const PaiementCanal = () => {
                 <Text style={{color:"white",fontSize:20}}>Facture Canal+</Text>
             }
         />
-        <View style={{flex:1,justifyContent: 'center', alignItems: 'center'}}>
+        <View style={{flex:1,justifyContent: 'center', alignItems: 'center', padding:6}}>
             <Image source={require('../assets/icon.png')} style={{width:130, height:130}} />
             <View style={{width:"100%", marginTop:25}}>
                 <TextInput keyboardType="number-pad" style={{height:45, margin:4}} label="Numéro de réabonnement" />
