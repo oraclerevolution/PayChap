@@ -20,7 +20,8 @@ const Home = ({navigation}) => {
             icon: icons.send,
             color: "black",
             backgroundColor: "black",
-            description: "Transfert"
+            description: "Transfert",
+            page:"ChooseTransfer"
         },
         {
             id: 3,
