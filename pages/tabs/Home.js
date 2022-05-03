@@ -51,6 +51,24 @@ const Home = ({navigation}) => {
             title: "À Jean Gontran",
             montant:-1350,
             date: "12 avril 2020"
+        },
+        {
+            id: 4,
+            title: "À N'Goran Assia",
+            montant:-1350,
+            date: "12 avril 2020"
+        },
+        {
+            id: 5,
+            title: "À Jean Gontran",
+            montant:-1350,
+            date: "12 avril 2020"
+        },
+        {
+            id: 6,
+            title: "À Jean Gontran",
+            montant:-1350,
+            date: "12 avril 2020"
         }
     ]
 
@@ -60,13 +78,13 @@ const Home = ({navigation}) => {
 
         const Header = () => (
             <View style={{ marginBottom: SIZES.padding * 2 }}>
-                <Text style={{ ...FONTS.h4 }}></Text>
+                <Text></Text>
             </View>
         )
 
         const renderItem = ({ item }) => (
             <TouchableOpacity
-                style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center', margin:10 }}
+                style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center', margin:10}}
                 onPress={() => navigation.navigate(item.page)}
             >
                 <View
@@ -78,7 +96,7 @@ const Home = ({navigation}) => {
                         borderWidth:1.2,
                         borderColor: item.backgroundColor,
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
                     }}
                 >
                     <Image
@@ -91,7 +109,7 @@ const Home = ({navigation}) => {
                         }}
                     />
                 </View>
-                <Text style={{ textAlign: 'center', width:100, flexWrap: 'wrap', ...FONTS.body4 }}>{item.description}</Text>
+                <Text style={{ textAlign: 'center', width:100, flexWrap: 'wrap',}}>{item.description}</Text>
             </TouchableOpacity>
         )
 
@@ -113,20 +131,17 @@ const Home = ({navigation}) => {
             <View
             style={{
                 flexDirection: 'row',
-                marginBottom: SIZES.padding
             }}
         >
                 <View style={{ flex: 1 }}>
-                    <Text style={{ ...FONTS.h4 }}>Mes dernières transactions</Text>
+                    <Text>Mes dernières transactions</Text>
                 </View>
                 <TouchableOpacity
                     onPress={() => console.log("okokok")}
                 >
-                    <Text style={{ color: COLORS.gray, ...FONTS.body4 }}>Voir tous</Text>
                 </TouchableOpacity>
         </View>
         )
-        
 
         const renderItem = ({ item }) => (
             <View style={{
@@ -177,8 +192,8 @@ const Home = ({navigation}) => {
 
     return(
         <View style={styles.container}>
-            <View style={{flex:1, width:"100%"}}>
-                <View style={{flex:1, marginBottom:15}}>
+            <ScrollView style={{flex:1,width:"100%"}}>
+                <View style={{flex:2}}>
                     <CreditCardUI 
                         creditCardNumber="4242424242424242"
                         cardCVC="123"
@@ -190,18 +205,19 @@ const Home = ({navigation}) => {
                         textColor="yellow"
                         secureCardNbr={true}
                     />
+                    <View style={{justifyContent: 'center',alignItems: 'center', marginBottom:"-4%"}}>
+                        <Text style={{color:"gray"}}>Votre solde</Text>
+                        <Text style={{fontSize:21, fontWeight:"bold"}}>20 000 FCFA</Text>
+                    </View>
+                    <View style={{alignItems: 'center', justifyContent: "flex-end", position:"relative", top:"-8%"}}>
+                        {renderFeatures()}
+                    </View>
                 </View>
-                <View style={{justifyContent: 'center',alignItems: 'center'}}>
-                    <Text style={{color:"gray"}}>Votre solde</Text>
-                    <Text style={{fontSize:21, fontWeight:"bold"}}>20 000 FCFA</Text>
-                </View>
-                <View style={{flex:1, position:"relative", top:"-8%", justifyContent: 'center', alignItems: 'center'}}>
-                    {renderFeatures()}
-                </View>
-                <View style={{flex:1,position:"relative", top:"-10%", height:"100%"}}>
+                <View style={{flex:1, position:"relative", top:-15}}>
                     {Historiques()}
                 </View>
-            </View>
+                
+            </ScrollView>
         </View>
     )
 
@@ -216,5 +232,6 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         justifyContent: 'center',
         alignItems: 'center',
+        paddingTop:20,
     }
 })

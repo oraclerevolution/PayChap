@@ -3,6 +3,7 @@ import React,{useEffect, useState} from 'react'
 import * as Contacts from 'expo-contacts'
 import { Avatar, Searchbar } from 'react-native-paper'
 import { FONTS, SIZES, COLORS } from '../../constants/theme'
+import { Header, Icon } from 'react-native-elements'
 
 const TransferNational = ({navigation}) => {
 
@@ -30,7 +31,7 @@ const TransferNational = ({navigation}) => {
     function renderDirectory() {
         const Header = () => (
             <View style={{ marginBottom: SIZES.padding * 2 }}>
-                <Text style={{fontWeight:"bold", fontSize:20, marginBottom:10}}>Bénéficiaire</Text>
+                <Text style={{fontSize:17, marginBottom:10}}>À</Text>
                 <Searchbar
                     placeholder="Entrez un nom ou un numéro"
                     onChangeText={onChangeSearch}
@@ -62,6 +63,16 @@ const TransferNational = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+        <Header
+            leftComponent={
+                <TouchableOpacity onPress={()=> navigation.goBack()}>
+                    <Icon size={23} name="arrow-back" color="#fff" />
+                </TouchableOpacity>
+            }
+            centerComponent={
+                <Text style={{color:"white",fontSize:20}}>Envoyer de l'argent</Text>
+            }
+      />
         <View style={{flex:1, padding:10}}>
             {renderDirectory()}
         </View>

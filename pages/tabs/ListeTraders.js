@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
 import { Header } from 'react-native-elements'
 import MapView from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-import { Button } from 'react-native-paper';
+import { Button, FAB } from 'react-native-paper';
 
 const markers = [
     {
@@ -26,6 +26,12 @@ const ListesTraders = ({navigation}) => {
                     longitudeDelta: 0.0421,
                 }}
             />
+            <FAB
+    style={styles.fab}
+    small
+    icon="plus"
+    onPress={() => console.log('Pressed')}
+  />
             </View>
         </View>
     )
@@ -38,6 +44,7 @@ const styles = StyleSheet.create({
         flex:1,
         alignItems:'center',
         justifyContent:'center',
+        paddingTop:15
     },
     button:{
         width:250,
@@ -48,4 +55,11 @@ const styles = StyleSheet.create({
         width: Dimensions.get('window').width,
         height: Dimensions.get('window').height
     },
+    fab: {
+        position: 'absolute',
+        margin: 16,
+        right: 0,
+        bottom: 0,
+        backgroundColor:"#1E89E2"
+      },
 })

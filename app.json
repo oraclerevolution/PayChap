@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "Wallet Test",
+    "name": "Paychap",
     "slug": "WalletTest",
     "version": "1.5.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logowallet.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splashh.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,7 +21,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logowallet.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.oracle_codeur.WalletTest"

@@ -32,7 +32,7 @@ const SettingsPage = ({ navigation }) => {
     ]
 
     return (
-        <View style={{flex:1}}>
+        <View style={{flex:1,paddingTop:15}}>
             <View style={styles.container}>
                 <View style={styles.listItem1}>
                     {

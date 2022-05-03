@@ -10,10 +10,10 @@ const AccueilPage = ({ navigation }) => {
             </View>
             <View style={{flex:1, padding:6}}>
                 <Text style={styles.text}>Envoyez et recevez de l'argent</Text>
-                <Text style={styles.text}>avec Wallet Test</Text>
+                <Text style={styles.text}>avec PayChap</Text>
 
                 <Button style={styles.button} mode="contained" onPress={() => navigation.navigate('Login')}>
-                Commencez
+                Commencer
                 </Button>
             </View>
         </View>
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     },
     text:{
         fontSize:18,
-        fontWeight:'bold',
         position:"relative",
         top:"60%"
     },
@@ -53,6 +52,7 @@ const styles = StyleSheet.create({
         bottom: "2%",
         width:250,
         alignSelf:'center',
+        borderRadius:18,
         backgroundColor: "#1E89E2",
     }
 })

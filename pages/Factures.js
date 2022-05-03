@@ -25,6 +25,17 @@ const Factures = ({navigation}) => {
             title: "CNPS",
             page:"PaiementCanal"
         }
+        ,
+        {
+            id: 5,
+            title: "Eau",
+            page:"PaiementCanal"
+        },
+        {
+            id: 6,
+            title: "Electricité",
+            page:"PaiementCanal"
+        }
     ]
     function Historiques(){
 
@@ -63,12 +74,16 @@ const Factures = ({navigation}) => {
   return (
     <View style={styles.container}>
         <Header
+        leftComponent={
+            <TouchableOpacity onPress={()=> navigation.goBack()}>
+                <Icon size={23} name="arrow-back" color="#fff" />
+            </TouchableOpacity>
+        }
             centerComponent={
-                <Text style={{color:"white",fontSize:20}}>Factures</Text>
+                <Text style={{color:"white",fontSize:19}}>Factures</Text>
             }
         />
         <View style={{flex:1, padding:7}}>
-            <Text style={{fontSize:23, fontWeight:"bold", marginBottom:"10%"}}>Factures</Text>
             {Historiques()}
         </View>
     </View>

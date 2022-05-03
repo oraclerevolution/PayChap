@@ -4,7 +4,7 @@ import { Header, Icon } from 'react-native-elements'
 import { Button } from 'react-native-paper'
 import OTPTextInput from "react-native-otp-textinput"
 
-const ScreenOTP = ({navigation}) => {
+const PasswordConfirm = ({navigation}) => {
     let otpInput = React.useRef(null);
     return (
         <View style={{flex:1}}>
@@ -16,9 +16,9 @@ const ScreenOTP = ({navigation}) => {
                 }
             />
             <View style={styles.container}>
-                <Text style={styles.text}>Veuillez défnir votre code secret</Text>
+                <Text style={styles.text}>Veuillez confirmer votre code secret</Text>
                 <OTPTextInput ref={e => (otpInput = e)} />
-                <Button style={styles.boutonLogin} mode="contained"  onPress={() => navigation.navigate('PasswordConfirm')}>
+                <Button style={styles.boutonLogin} mode="contained"  onPress={() => navigation.navigate('Forms')}>
                     Suivant
                 </Button>
             </View>
@@ -26,7 +26,7 @@ const ScreenOTP = ({navigation}) => {
     )
 }
 
-export default ScreenOTP
+export default PasswordConfirm
 
 const styles = StyleSheet.create({
     container: {

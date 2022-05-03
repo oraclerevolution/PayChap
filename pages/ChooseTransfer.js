@@ -1,25 +1,29 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { Header } from 'react-native-elements'
+import { Header, Icon } from 'react-native-elements'
 
 const ChooseTransfer = ({navigation}) => {
   return (
     <View style={styles.container}>
       <Header
+      leftComponent={
+        <TouchableOpacity onPress={()=> navigation.goBack()}>
+            <Icon size={23} name="arrow-back" color="#fff" />
+        </TouchableOpacity>
+    }
         centerComponent={
             <Text style={{color:"white",fontSize:20}}>Transfert d'argent</Text>
         }
       />
       <View style={{flex:1}}>
-        <Text style={{fontWeight:"500",textAlign:"center", fontSize:17, margin:10}}>Choisissez le type de transfert d'argent que vous souhaiter éffectuer</Text>
         <View style={{flexDirection:"row"}}>
             <TouchableOpacity style={styles.cardView} onPress={()=> navigation.navigate('TransfertNational')}>
                 <Image source={require('../assets/TransferNat.png')} style={{width:90, height:90, margin:6}} />
-                <Text style={{fontSize:15}}>Transfert national</Text>
+                <Text style={{fontSize:15}}>Transfert PayChap</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.cardView} onPress={()=> console.log('okokok')}>
                 <Image source={require('../assets/TransferInter.png')} style={{width:90, height:90, margin:6}} />
-                <Text style={{fontSize:15}}>Transfert international</Text>
+                <Text style={{fontSize:15}}>Autres transferts</Text>
             </TouchableOpacity>
         </View>
       </View>

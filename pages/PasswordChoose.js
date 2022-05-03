@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Text, StyleSheet, View,StatusBar, SafeAreaView, Image,TouchableOpacity} from 'react-native'
+import { Header,Icon } from 'react-native-elements';
 
 const PasswordChoose = ({navigation}) => {
     const [passcode, setPasscode] = useState(['','','','']);
@@ -36,14 +37,18 @@ const PasswordChoose = ({navigation}) => {
     }
     return (
         <SafeAreaView style={styles.container}>
+            <Header
+                leftComponent={
+                    <TouchableOpacity onPress={()=> navigation.goBack()}>
+                        <Icon size={23} name="arrow-back" color="#fff" />
+                    </TouchableOpacity>
+                }
+            />
             <StatusBar barStyle='light-content' />
             <View style={styles.swipe}>
-                <View>
-                    <Image source={require('../assets/icon.png')} style={{width:80, height:80, position:'relative', top:"50%"}} />
-                </View>
                 <View style={{marginTop:75}}>
                     <View>
-                        <Text style={styles.passcodeText}>Entrez un mot de passe</Text>
+                        <Text style={styles.passcodeText}>Veuillez définir votre code secret</Text>
                     </View>
                     <View style={styles.codeContainer}>
                         {
@@ -94,16 +99,18 @@ const styles = StyleSheet.create({
         lineHeight:22
     },
     passcodeText:{
-        fontSize:17,
+        fontSize:18,
         color:"#000",
         letterSpacing:0.34,
-        lineHeight:25
+        lineHeight:25,
+        position:'relative',
+        top:"-150%"
     },
     codeContainer:{
-        marginTop:12,
+        marginTop:18,
         flexDirection:'row',
         alignItems:'center',
-        justifyContent:'space-between',
+        justifyContent:"space-around",
     },
     code:{
         width:13,

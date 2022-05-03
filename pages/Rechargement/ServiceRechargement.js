@@ -12,11 +12,21 @@ const ServiceRechargement = ({navigation}) => {
         },
         {
             id: 2,
+            title: "Flooz",
+            page: "PageRecharge"
+        },
+        {
+            id: 3,
+            title: "MTN Mobile Money",
+            page: "PageRecharge"
+        },
+        {
+            id: 4,
             title:"UBA",
             page: "PageRecharge",
         },
         {
-            id: 3,
+            id: 5,
             title: "Djamo",
             page:"PageRecharge"
         }
@@ -58,10 +68,16 @@ const ServiceRechargement = ({navigation}) => {
   return (
     <View style={styles.container}>
         <Header
-            
+            leftComponent={
+                <TouchableOpacity onPress={()=> navigation.goBack()}>
+                    <Icon size={23} name="arrow-back" color="#fff" />
+                </TouchableOpacity>
+            }
+            centerComponent={
+                <Text style={{color:"white", fontSize:19}}>Recharger mon compte</Text>
+            }
         />
         <View style={{flex:1, padding:7}}>
-            <Text style={{fontSize:20, fontWeight:"bold", marginBottom:"5%"}}>Moyens de rechargement disponible</Text>
             {Historiques()}
         </View>
     </View>

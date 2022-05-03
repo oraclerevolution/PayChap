@@ -10,7 +10,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import AccueilPage from "./pages/Accueil"
 import SteppersPage from "./pages/Steppers"
 import LoginPage from './pages/Login'
-import InscriptionPage from './pages/SignUp'
 import PricingPage from './pages/Pricing'
 import Checkout from './pages/Checkout'
 import HistoriquesTradesPage from './pages/HistoriquesTrades'
@@ -31,6 +30,8 @@ import TransferNational from './pages/TransfertNational/TransferNational';
 import PageTransfert from './pages/TransfertNational/PageTransfert';
 import ServiceRechargement from './pages/Rechargement/ServiceRechargement';
 import PageRecharge from './pages/Rechargement/PageRecharge';
+import PasswordConfirm from './pages/PasswordConfirm';
+import FileUploadSignUp from './pages/FileUploadSignUp';
 
 //creation de la navigation stack
 const NavigationStack = createStackNavigator();
@@ -47,8 +48,8 @@ const NavigatorTabScreen = () => (
             if (route.name === 'Portefeuille') {
               iconName = focused
                 ? 'ios-wallet' : 'ios-wallet-outline';
-            } else if (route.name === 'Agences') {
-              iconName = focused ? 'ios-map' : 'ios-map-outline';
+            } else if (route.name === 'Agents à proximité') {
+              iconName = focused ? 'ios-location' : 'ios-location-outline';
             }else if (route.name === 'Paramètres') {
               iconName = focused ? 'ios-cog' : 'ios-cog-outline';
             }
@@ -63,7 +64,7 @@ const NavigatorTabScreen = () => (
         }}
   >
     <NavigationTabs.Screen name="Portefeuille" component={Home} />
-    <NavigationTabs.Screen name="Agences" component={ListesTraders} />
+    <NavigationTabs.Screen name="Agents à proximité" component={ListesTraders} />
     <NavigationTabs.Screen name="Paramètres" component={SettingsPage} />
   </NavigationTabs.Navigator>
 )
@@ -76,6 +77,7 @@ export default function App() {
         <NavigationStack.Screen name="Steppers" component={SteppersPage} />
         <NavigationStack.Screen name="Login" component={LoginPage} />
         <NavigationStack.Screen name="ScreenOTP" component={ScreenOTP} />
+        <NavigationStack.Screen name="PasswordConfirm" component={PasswordConfirm} />
         <NavigationStack.Screen name="Forms" component={FormsData} />
         <NavigationStack.Screen name="Facture" component={Factures} />
         <NavigationStack.Screen name="PaiementCanal" component={PaiementCanal} />
@@ -84,7 +86,6 @@ export default function App() {
         <NavigationStack.Screen name="TransfertNatMontant" component={PageTransfert} />
         <NavigationStack.Screen name="ServiceRechargement" component={ServiceRechargement} />
         <NavigationStack.Screen name="PageRecharge" component={PageRecharge} />
-        <NavigationStack.Screen name="SignUp" component={InscriptionPage} />
         <NavigationStack.Screen name="Pricing" component={PricingPage} />
         <NavigationStack.Screen name="Checkout" component={Checkout} />
         <NavigationStack.Screen name="Preuves" component={PreuvesPaiement} />
@@ -93,6 +94,8 @@ export default function App() {
         <NavigationStack.Screen name="Signals" component={Signal} />
         <NavigationStack.Screen name="DetailsSignals" component={DetailsSignals} />
         <NavigationStack.Screen name="Tabs" component={NavigatorTabScreen} />
+        <NavigationStack.Screen name="FileUploadInscription" component={FileUploadSignUp} />
+
       </NavigationStack.Navigator>
     </NavigationContainer>
   );
