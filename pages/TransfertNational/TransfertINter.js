@@ -3,7 +3,7 @@ import React from 'react'
 import { FONTS, SIZES, COLORS } from '../../constants/theme'
 import { Header, Icon } from 'react-native-elements';
 
-const ServiceRechargement = ({navigation}) => {
+const TransfertINter = ({navigation}) => {
     const services = [
         {
             id: 1,
@@ -44,7 +44,7 @@ const ServiceRechargement = ({navigation}) => {
                 padding:6,
                 width:"100%",
                 flexDirection: 'row',
-            }} onPress={()=> navigation.navigate(item.page)}>
+            }} onPress={()=> console.log('okokok')}>
                 <View>
                     <Image source={{uri:item.image}} style={{width:55, height:55}} />
                 </View>
@@ -79,7 +79,7 @@ const ServiceRechargement = ({navigation}) => {
                 </TouchableOpacity>
             }
             centerComponent={
-                <Text style={{color:"white", fontSize:19}}>Recharger mon compte</Text>
+                <Text style={{color:"white", fontSize:19}}>Autres transferts</Text>
             }
         />
         <View style={{flex:1, padding:7}}>
@@ -89,7 +89,7 @@ const ServiceRechargement = ({navigation}) => {
   )
 }
 
-export default ServiceRechargement
+export default TransfertINter
 
 const styles = StyleSheet.create({
     container:{

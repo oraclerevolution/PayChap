@@ -21,7 +21,7 @@ const ChooseTransfer = ({navigation}) => {
                 <Image source={require('../assets/TransferNat.png')} style={{width:90, height:90, margin:6}} />
                 <Text style={{fontSize:15}}>Transfert PayChap</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.cardView} onPress={()=> console.log('okokok')}>
+            <TouchableOpacity style={styles.cardView} onPress={()=> navigation.navigate('TransfertInter')}>
                 <Image source={require('../assets/TransferInter.png')} style={{width:90, height:90, margin:6}} />
                 <Text style={{fontSize:15}}>Autres transferts</Text>
             </TouchableOpacity>
