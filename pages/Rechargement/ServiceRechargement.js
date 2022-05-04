@@ -14,26 +14,14 @@ const ServiceRechargement = ({navigation}) => {
         {
             id: 2,
             title: "Flooz",
-            page: "",
+            page: "PageRecharge",
             image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTh-G8eRp2j8LDiTh-TMCBAUkHteO3sr1u5u-v_B6umn7Jqh0PbCETybRZDuvIZSfu7ZWA&usqp=CAU"
         },
         {
             id: 3,
             title: "MTN Mobile Money",
-            page: "",
+            page: "PageRecharge",
             image:"https://www.africaguinee.com/sites/default/files/field/image/logo_momo_fond_jaune.png.jpg"
-        },
-        {
-            id: 4,
-            title:"UBA",
-            page: "",
-            image:"https://www.jadoremabanque.com/uploads/images/27.jpeg"
-        },
-        {
-            id: 5,
-            title: "Djamo",
-            page:"",
-            image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRusqiKhviikGe0SWOz3pHl2gA-eQeI-omzBwBxo9AmaRaxwlRmSKrgbIzz0Gqa5nCFq0&usqp=CAU"
         }
     ]
     function Historiques(){
@@ -44,7 +32,10 @@ const ServiceRechargement = ({navigation}) => {
                 padding:6,
                 width:"100%",
                 flexDirection: 'row',
-            }} onPress={()=> navigation.navigate(item.page)}>
+            }} onPress={()=> navigation.navigate(item.page,{
+                reseauNom: item.title,
+                reseauImage: item.image
+            })}>
                 <View>
                     <Image source={{uri:item.image}} style={{width:55, height:55}} />
                 </View>
