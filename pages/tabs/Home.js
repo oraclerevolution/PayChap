@@ -155,7 +155,7 @@ const Home = ({navigation}) => {
                     padding:3
                 }}>
                     <Text style={{
-                        fontSize:18,
+                        fontSize:16,
                         fontWeight:"bold",
                         color:"#7a7a7a"
                     }}>{item.title}</Text>
@@ -170,8 +170,7 @@ const Home = ({navigation}) => {
                 }}>
                     <Text style={{
                         fontSize:13,
-                        fontWeight:"bold",
-                        color:"#f03737",
+                        color:"#000",
                         textAlign:"center"
                     }}>{item.montant} F CFA</Text>
                 </View>

@@ -23,39 +23,42 @@ const FormsData = ({navigation}) => {
             }
         />
         <View style={styles.container}>
-        <Text style={{fontSize:20, marginBottom:"5%", textAlign:"left"}}>Enregistrement</Text>
-        <TextInput label="Nom complet" placeholder='Assia Jean' style={{width:"95%", margin:5, height:50, backgroundColor:"#fff"}} />
-        <TextInput label="Email" placeholder='assiajean@test.com' style={{width:"95%", margin:5, height:50, backgroundColor:"#fff"}} />
-        <View style={{flexDirection:"row", justifyContent:'flex-start', width:"100%", padding:8}}>
-            <Text style={{
-                position:"relative",top:"2%"
-            }}>Homme</Text>
-            <View style={{position:'relative', left:"20%"}}>
-                <RadioButton
-                color='blue'
-                    value="first"
-                    status={ checked === 'first' ? 'checked' : 'unchecked' }
-                    onPress={() => setChecked('first')}
-                />
+        <Text style={{fontSize:21, fontWeight:"bold", paddingLeft:8 , marginBottom:"5%", textAlign:"left", color:"#1E89E2"}}>Enregistrement</Text>
+        <View style={{justifyContent: "center", alignItems: 'center',}}>
+            <TextInput label="Nom complet" placeholder='Assia Jean' style={{width:"95%", margin:5, height:50, backgroundColor:"#fff"}} />
+            <TextInput label="Email" placeholder='assiajean@test.com' style={{width:"95%", margin:5, height:50, backgroundColor:"#fff"}} />
+            <View style={{flexDirection:"row", justifyContent:'flex-start', width:"100%", padding:8}}>
+                <Text style={{
+                    position:"relative",top:"2%"
+                }}>Homme</Text>
+                <View style={{position:'relative', left:"20%"}}>
+                    <RadioButton
+                    color='blue'
+                        value="first"
+                        status={ checked === 'first' ? 'checked' : 'unchecked' }
+                        onPress={() => setChecked('first')}
+                    />
+                </View>
+                <Text style={{
+                    position:"relative",top:"2%", right:"-455%"
+                }}>Femme</Text>
+                <View style={{position:'relative', right:"-470%"}}>
+                    <RadioButton
+                    color='blue'
+                        value="second"
+                        status={ checked === 'second' ? 'checked' : 'unchecked' }
+                        onPress={() => setChecked('second')}
+                    />
+                </View>
             </View>
-            <Text style={{
-                position:"relative",top:"2%", right:"-455%"
-            }}>Femme</Text>
-            <View style={{position:'relative', right:"-470%"}}>
-                <RadioButton
-                color='blue'
-                    value="second"
-                    status={ checked === 'second' ? 'checked' : 'unchecked' }
-                    onPress={() => setChecked('second')}
-                />
-            </View>
+            <Text style={styles.text}>Veuillez défnir votre code secret</Text>
+            <OTPTextInput ref={e => (otpInput = e)} />
+            <OTPTextInput ref={e => (otpInput = e)} />
+            <Button style={styles.boutonLogin} mode="contained"  onPress={() => navigation.navigate('FileUploadInscription')}>
+                    Continuer
+                </Button>
+
         </View>
-        <Text style={styles.text}>Veuillez défnir votre code secret</Text>
-        <OTPTextInput ref={e => (otpInput = e)} />
-        <OTPTextInput ref={e => (otpInput = e)} />
-        <Button style={styles.boutonLogin} mode="contained"  onPress={() => navigation.navigate('FileUploadInscription')}>
-                Continuer
-            </Button>
         </View>
     </View>
   )
@@ -67,8 +70,9 @@ const styles = StyleSheet.create({
     container:{
         flex:1,
         backgroundColor:"white",
-        justifyContent: "center",
-        alignItems: 'center',
+        padding:8,
+        paddingTop:20
+        
     },
     boutonLogin:{
             marginTop:"5%",

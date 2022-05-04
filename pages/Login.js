@@ -13,7 +13,7 @@ const LoginPage = ({navigation}) => {
     const firstInput = useRef(null)
     return (
         <View style={styles.container}>
-            <Text style={{fontSize:18, color:'gray', color:"#000", textAlign:"center"}}>Entrez votre numéro de télephone pour commencer !</Text>
+            <Text style={{fontSize:18, color:'gray', color:"#000", textAlign:"center", paddingTop:30}}>Entrez votre numéro de télephone pour commencer !</Text>
             <View style={styles.forms} ref={firstInput}>
                     <PhoneInput style={{borderBottomWidth:1, padding:10, width:"33.2%"}} confirmText="Confirmer" cancelText='Annuler' initialValue='+225' allowZeroAfterCountryCode={true} />
                     <MaskInput placeholder='XX XX XX XX XX' 
