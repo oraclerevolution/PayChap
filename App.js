@@ -34,6 +34,8 @@ import PasswordConfirm from './pages/PasswordConfirm';
 import FileUploadSignUp from './pages/FileUploadSignUp';
 import TransfertINter from './pages/TransfertNational/TransfertINter';
 import AjouterNumero from './pages/TransfertNational/AjouterNumero';
+import TransferInternational from './pages/TransfertNational/TransferInternational';
+import PageAutreTransfert from './pages/TransfertNational/PageAutreTransfert';
 
 //creation de la navigation stack
 const NavigationStack = createStackNavigator();
@@ -99,6 +101,8 @@ export default function App() {
         <NavigationStack.Screen name="FileUploadInscription" component={FileUploadSignUp} />
         <NavigationStack.Screen name="TransfertInter" component={TransfertINter} />
         <NavigationStack.Screen name="AjouterNumero" component={AjouterNumero} />
+        <NavigationStack.Screen name="Repertoire" component={TransferInternational} />
+        <NavigationStack.Screen name="PageAutresTransfert" component={PageAutreTransfert} />
 
       </NavigationStack.Navigator>
     </NavigationContainer>
