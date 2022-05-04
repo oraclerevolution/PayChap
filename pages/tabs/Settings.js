@@ -1,72 +1,55 @@
 import React from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
-import {Button} from 'react-native-paper'
+import {Button, List} from 'react-native-paper'
 import {Header, ListItem, Avatar,Button as Btn} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SettingsPage = ({ navigation }) => {
-    const list = [
-        {
-            title: 'Mon historique de transactions',
-            icon: 'money',
-            page: 'Historique',
-        },
-        {
-            title: 'Moyens de réapprovisionnement',
-            icon: 'credit-card',
-            page: 'Informations',
-        },
-    ]
-
-
-    const list2 = [
-        {
-          name: 'FAQ'
-        },
-        {
-          name: 'Conditions générales'
-        },
-        {
-          name: 'A propos'
-        },
-    ]
 
     return (
         <View style={{flex:1,paddingTop:15}}>
             <View style={styles.container}>
-                <View style={styles.listItem1}>
-                    {
-                        list.map((l, i) => (
-                        <ListItem key={i} bottomDivider onPress={()=> console.log("ok ok")}>
-                            <Icon name={l.icon} />
-                            <ListItem.Content>
-                            <ListItem.Title>{l.title}</ListItem.Title>
-                            </ListItem.Content>
-                             <ListItem.Chevron />
-                        </ListItem>
-                        ))
-                    }
+                <View style={{flex:2, paddingTop:20}}>
+                    <List.Item
+                        title="Invitez un ami"
+                        left={props => <List.Icon {...props} icon="share" />}
+                    />
+                    <List.Item
+                        title="Appelez le service client gratuitement"
+                        left={props => <List.Icon {...props} icon="phone" />}
+                    />
+                    <List.Item
+                        title="Trouvez les agents à proximité"
+                        left={props => <List.Icon {...props} icon="map" />}
+                    />
+                    <List.Item
+                        title="Vérifiez votre plafond"
+                        left={props => <List.Icon {...props} icon="history" />}
+                    />
+                    <List.Item
+                        title="Modifiez votrre code secret"
+                        left={props => <List.Icon {...props} icon="key" />}
+                    />
+                    <List.Item
+                        title="Utiliser le code promotionnel"
+                        left={props => <List.Icon {...props} icon="trophy" />}
+                    />
+                    <List.Item
+                        title="Se déconnecter (0709483463)"
+                        left={props => <List.Icon {...props} icon="logout" />}
+                    />
                 </View>
-
-                <View style={styles.listItem2}>
-                {
-                    list2.map((l, i) => (
-                        <ListItem key={i} bottomDivider>
-                            <ListItem.Content>
-                                <ListItem.Title>{l.name}</ListItem.Title>
-                            </ListItem.Content>
-                        </ListItem>
-                    ))
-                }
+                <View style={{flex:1, justifyContent:"flex-end", alignItems:"center"}}>
+                    <View style={{flexDirection:"row"}}>
+                        <Image source={require('../../assets/orange.png')} style={{width:50, height:50, margin:4}} />
+                        <Image source={require('../../assets/om.png')} style={{width:50, height:50, margin:4}} />
+                        <Image source={require('../../assets/djamo.png')} style={{width:50, height:50, margin:4}} />
+                    </View>
+                    <Text style={{color:"gray"}}>Conditions Générales</Text>
+                    <Text style={{color:"gray"}}>Politiques de confidentialités</Text>
+                    <Text style={{color:"gray"}}>Version 02.04.21 - v1.6</Text>
                 </View>
                 
-                <View style={styles.lastSection}>
-                    <Image
-                        source={require('../../assets/images/logout.png')}
-                        style={styles.image}
-                    />
-                    <Button mode='outlined' labelStyle={{color:'#000'}} onPress={()=> navigation.navigate('Login')}>DECONNEXION</Button>
-                </View>
             </View>
         </View>
     )
