@@ -5,11 +5,11 @@ import { Avatar, Searchbar } from 'react-native-paper'
 import { FONTS, SIZES, COLORS } from '../../constants/theme'
 import { Header, Icon } from 'react-native-elements'
 
-const TransferNational = ({navigation}) => {
+const TransferNational = ({route, navigation}) => {
 
-    const [contact, SetContact] = useState([])
+    const [contact, SetContact] = useState()
     const [searchQuery, setSearchQuery] = React.useState('');
-
+    
     useEffect(() => {
         (async () => {
           const { status } = await Contacts.requestPermissionsAsync();
@@ -31,22 +31,36 @@ const TransferNational = ({navigation}) => {
     function renderDirectory() {
         const Header = () => (
             <View style={{ marginBottom: SIZES.padding * 2 }}>
-                <Text style={{fontSize:17, marginBottom:10}}>À</Text>
                 <Searchbar
-                    placeholder="Entrez un nom ou un numéro"
+                    placeholder="Nom ou numéro bénéficiaire"
                     onChangeText={onChangeSearch}
                     value={searchQuery}
+                    style={{borderBottomWidth:1}}
                 />
+                <View style={{marginTop:5}}>
+                    <TouchableOpacity style={{height:58, flexDirection:"row", alignItems:"center"}} onPress={()=> navigation.navigate('AjouterNumero')}>
+                        <Icon name='add-circle' color="#1E89E2" size={50} style={{marginRight:15}} />
+                        <Text style={{fontSize:18, fontWeight:"400"}}>Envoyer à un nouveau numéro</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
 
         const renderItem = ({ item }) => (
             <TouchableOpacity
-                style={{ marginBottom: 2, width: "90%", alignItems: 'center', margin:10, flexDirection: 'row', padding:6 }}
-                onPress={()=> navigation.navigate('TransfertNatMontant')}
+                style={{ marginBottom: 2, width: "90%", alignItems: 'center', margin:10, flexDirection: 'row', }}
+                onPress={()=> navigation.navigate('TransfertNatMontant',{
+                    userName: item.name,
+                    userPhone: item.phoneNumbers && item.phoneNumbers[0] && item.phoneNumbers[0].number
+                })}
             >
-                <Avatar.Text size={30} label="XD" />
-                <Text style={{color:'black', textAlign:'center', marginLeft:15, fontWeight:"bold", fontSize:18}}>Assia - +225 0709483463</Text>
+                <View style={{width:40, alignItems: 'center', justifyContent: 'center', backgroundColor:"#efefef", borderRadius:20, height:40}}>
+                    <Icon name='person' />
+                </View>
+                <View style={{flexDirection:"column", width:"90%"}}>
+                    <Text style={{color:'black', marginLeft:15, fontSize:16}}>{item.name}</Text>
+                    <Text style={{marginLeft:15, color:"gray"}}>{item.phoneNumbers && item.phoneNumbers[0] && item.phoneNumbers[0].number}</Text>
+                </View>
             </TouchableOpacity>
         )
 
