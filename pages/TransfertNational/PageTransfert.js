@@ -1,12 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { Header } from 'react-native-elements'
+import { Header, Icon } from 'react-native-elements'
 import { Button, TextInput } from 'react-native-paper'
 
 const PageTransfert = ({navigation}) => {
   return (
     <View style={styles.container}>
-        <Header />
+        <Header
+            leftComponent={
+                <TouchableOpacity onPress={()=> navigation.goBack()}>
+                    <Icon size={23} name="arrow-back" color="#fff" />
+                </TouchableOpacity>
+            }
+            centerComponent={
+                <Text style={{color:"white",fontSize:19}}>Envoyer de l'argent</Text>
+            }
+      />
         <View style={{flex:1, padding:10}}>
             <Text style={{fontWeight:"bold", fontSize:20, marginBottom:10}}>Montant</Text>
             <Text>À</Text>

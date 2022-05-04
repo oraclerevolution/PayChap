@@ -70,7 +70,7 @@ const TransferNational = ({navigation}) => {
                 </TouchableOpacity>
             }
             centerComponent={
-                <Text style={{color:"white",fontSize:20}}>Envoyer de l'argent</Text>
+                <Text style={{color:"white",fontSize:19}}>Envoyer de l'argent</Text>
             }
       />
         <View style={{flex:1, padding:10}}>

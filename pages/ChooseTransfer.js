@@ -12,7 +12,7 @@ const ChooseTransfer = ({navigation}) => {
         </TouchableOpacity>
     }
         centerComponent={
-            <Text style={{color:"white",fontSize:20}}>Transfert d'argent</Text>
+            <Text style={{color:"white",fontSize:19}}>Transfert d'argent</Text>
         }
       />
       <View style={{flex:1}}>
