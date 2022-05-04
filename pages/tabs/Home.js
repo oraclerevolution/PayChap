@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
-import { Header } from 'react-native-elements'
+import { Header, Icon } from 'react-native-elements'
 import { FONTS, SIZES, COLORS } from '../../constants/theme'
 import icons from '../../constants/icons'
 import CreditCardUI from "rn-credit-card-ui";
@@ -66,6 +66,42 @@ const Home = ({navigation}) => {
         },
         {
             id: 6,
+            title: "À Jean Gontran",
+            montant:-1350,
+            date: "12 avril 2020"
+        },
+        {
+            id: 7,
+            title: "À Assia Jean",
+            montant:-7350,
+            date: "4 mars 2022"
+        },
+        {
+            id: 8,
+            title: "À David de Paul",
+            montant:-6350,
+            date: "1 janvier 2021"
+        },
+        {
+            id: 9,
+            title: "À Jean Gontran",
+            montant:-1350,
+            date: "12 avril 2020"
+        },
+        {
+            id: 10,
+            title: "À N'Goran Assia",
+            montant:-1350,
+            date: "12 avril 2020"
+        },
+        {
+            id: 11,
+            title: "À Jean Gontran",
+            montant:-1350,
+            date: "12 avril 2020"
+        },
+        {
+            id: 12,
             title: "À Jean Gontran",
             montant:-1350,
             date: "12 avril 2020"
@@ -190,33 +226,39 @@ const Home = ({navigation}) => {
     }
 
     return(
-        <View style={styles.container}>
-            <ScrollView style={{flex:1,width:"100%"}}>
-                <View style={{flex:2}}>
-                    <CreditCardUI 
-                        creditCardNumber="4242424242424242"
-                        cardCVC="123"
-                        cardHolderGender="miss"
-                        cardHolderName="Maria James"
-                        cardExpiryDate="11/23"
-                        frontImg={require('../../assets/images/card-front.png')} // or require("")
-                        backImg={require('../../assets/images/card-back.png')}
-                        textColor="yellow"
-                        secureCardNbr={true}
-                    />
-                    <View style={{justifyContent: 'center',alignItems: 'center', marginBottom:"-4%"}}>
-                        <Text style={{color:"gray"}}>Votre solde</Text>
-                        <Text style={{fontSize:21, fontWeight:"bold"}}>20 000 FCFA</Text>
+        <View style={{flex:1}}>
+            <Header
+                centerComponent={
+                    <Text style={{color:"white", fontSize:20, fontWeight:"bold"}}>20 000 FCFA</Text>
+                }
+        />
+            <View style={styles.container}>
+                <ScrollView style={{flex:1,width:"100%"}}>
+                    <View>
+                        <View style={{justifyContent: 'center',alignItems: 'center', marginBottom:"0%"}}>
+                            <Text style={{color:"gray"}}>Votre solde</Text>
+                            <Text style={{fontSize:21, fontWeight:"bold"}}>20 000 FCFA</Text>
+                        </View>
+                        <CreditCardUI 
+                            creditCardNumber="4242424242424242"
+                            cardCVC="123"
+                            cardHolderGender="MR"
+                            cardHolderName="TOMAS EDISON"
+                            cardExpiryDate="11/23"
+                            frontImg={require('../../assets/images/card-front.png')} // or require("")
+                            backImg={require('../../assets/images/card-back.png')}
+                            textColor="yellow"
+                            secureCardNbr={true}
+                        />
+                        <View style={{alignItems: 'center', justifyContent: "flex-end", position:"relative", top:"-10%"}}>
+                            {renderFeatures()}
+                        </View>
                     </View>
-                    <View style={{alignItems: 'center', justifyContent: "flex-end", position:"relative", top:"-8%"}}>
-                        {renderFeatures()}
+                    <View style={{position:"relative", top:-15}}>
+                        {Historiques()}
                     </View>
-                </View>
-                <View style={{flex:1, position:"relative", top:-15}}>
-                    {Historiques()}
-                </View>
-                
-            </ScrollView>
+                </ScrollView>
+            </View>
         </View>
     )
 
@@ -227,7 +269,6 @@ export default Home
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        marginTop:25,
         backgroundColor: "white",
         justifyContent: 'center',
         alignItems: 'center',

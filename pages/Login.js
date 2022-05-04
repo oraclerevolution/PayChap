@@ -10,7 +10,17 @@ import MaskInput from 'react-native-mask-input';
 const LoginPage = ({navigation}) => {
     const [number, onChangeNumber] = React.useState('');
     const [phone, setPhone] = React.useState('');
+    const value = "07 09 48 34 63"
     const firstInput = useRef(null)
+
+    function redirect(){
+        if (phone == value) {
+            navigation.navigate('Password')
+        }else{
+            navigation.navigate('Forms')
+        }
+    }
+
     return (
         <View style={styles.container}>
             <Text style={{fontSize:18, color:'gray', color:"#000", textAlign:"center", paddingTop:30}}>Entrez votre numéro de télephone pour commencer !</Text>
@@ -31,7 +41,7 @@ const LoginPage = ({navigation}) => {
                       }}
                       mask={[/\d/,/\d/,' ', /\d/,/\d/,' ',/\d/,/\d/,' ', /\d/,/\d/,' ',/\d/,/\d/,]}
                     />
-                    <Button style={styles.boutonLogin} mode="contained"  onPress={() => navigation.navigate('Forms')}>
+                    <Button style={styles.boutonLogin} mode="contained"  onPress={() => redirect()}>
                         Suivant
                     </Button>
                 
