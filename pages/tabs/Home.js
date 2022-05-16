@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView, SafeAreaView, Animated } from 'react-native'
 import { Header, Icon } from 'react-native-elements'
 import { FONTS, SIZES, COLORS } from '../../constants/theme'
 import icons from '../../constants/icons'
@@ -225,41 +225,63 @@ const Home = ({navigation}) => {
         )
     }
 
+    let AnimatedHeaderValue = new Animated.Value(0);
+    const Header_Max_Height = 100;
+    const Header_Min_Height = 85;
+
+    const animateHeaderBackgroundColor = AnimatedHeaderValue.interpolate({
+    inputRange: [0, Header_Max_Height - Header_Min_Height],
+    outputRange: ['white', 'white'],
+    extrapolate: 'clamp'
+    });
+
+    const animateHeaderHeight = AnimatedHeaderValue.interpolate({
+    inputRange: [0, Header_Max_Height - Header_Min_Height],
+    outputRange: [Header_Max_Height, Header_Min_Height],
+    extrapolate: 'clamp'
+    })
+
     return(
-        <View style={{flex:1}}>
-            <Header
-                centerComponent={
-                    <Text style={{color:"white", fontSize:20, fontWeight:"bold"}}>20 000 FCFA</Text>
-                }
-        />
-            <View style={styles.container}>
-                <ScrollView style={{flex:1,width:"100%"}}>
-                    <View>
-                        <View style={{justifyContent: 'center',alignItems: 'center', marginBottom:"0%"}}>
-                            <Text style={{color:"gray"}}>Votre solde</Text>
-                            <Text style={{fontSize:21, fontWeight:"bold"}}>20 000 FCFA</Text>
-                        </View>
-                        <CreditCardUI 
-                            creditCardNumber="4242424242424242"
-                            cardCVC="123"
-                            cardHolderGender="MR"
-                            cardHolderName="TOMAS EDISON"
-                            cardExpiryDate="11/23"
-                            frontImg={require('../../assets/images/card-front.png')} // or require("")
-                            backImg={require('../../assets/images/card-back.png')}
-                            textColor="yellow"
-                            secureCardNbr={true}
-                        />
-                        <View style={{alignItems: 'center', justifyContent: "flex-end", position:"relative", top:"-10%"}}>
-                            {renderFeatures()}
-                        </View>
+        <SafeAreaView>
+            <Animated.View 
+                style={[
+                    styles.header,
+                    {
+                    height: animateHeaderHeight,
+                    backgroundColor: animateHeaderBackgroundColor
+                    }
+                ]}
+            >
+                <Text style={{fontSize:21, fontWeight:"bold"}}>20 000 FCFA</Text>
+            </Animated.View>
+            <ScrollView
+                scrollEventThrottle={16}
+                onScroll={Animated.event(
+                    [{nativeEvent: {contentOffset: {y: AnimatedHeaderValue}}}],
+                    {useNativeDriver: false}
+                )}
+            >
+                <View>
+                    <CreditCardUI 
+                        creditCardNumber="4242424242424242"
+                        cardCVC="123"
+                        cardHolderGender="MR"
+                        cardHolderName="THOMAS EDISON"
+                        cardExpiryDate="11/23"
+                        frontImg={require('../../assets/images/card-front.png')} // or require("")
+                        backImg={require('../../assets/images/card-back.png')}
+                        textColor="yellow"
+                        secureCardNbr={true}
+                    />
+                    <View style={{alignItems: 'center', justifyContent: "flex-end", position:"relative", top:"-10%"}}>
+                        {renderFeatures()}
                     </View>
-                    <View style={{position:"relative", top:-15}}>
-                        {Historiques()}
-                    </View>
-                </ScrollView>
-            </View>
-        </View>
+                </View>
+                <View style={{position:"relative", top:-15}}>
+                    {Historiques()}
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     )
 
 }
@@ -269,9 +291,21 @@ export default Home
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor: "white",
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop:20,
-    }
+    },
+    header:{
+        justifyContent:"center",
+        alignItems:"center",
+        left:0,
+        right:0
+      },
+      headerText:{
+        color:"#fff",
+        fontSize:18,
+        textAlign:"center",
+      },
+      headerTextMin:{
+        color:"#fff",
+        fontSize:16,
+        textAlign:"center",
+      }
 })
