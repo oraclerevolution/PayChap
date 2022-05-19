@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "Paychap",
-    "slug": "WalletTest",
-    "version": "1.5.0",
+    "slug": "Paychap",
+    "version": "1.8.0",
     "orientation": "portrait",
     "icon": "./assets/logowallet.png",
     "splash": {

@@ -3,9 +3,12 @@ import React from 'react'
 import { Header, Icon } from 'react-native-elements'
 import { Button, TextInput } from 'react-native-paper'
 
-const PageRecharge = ({route,navigation}) => {
+const PageAutreTransfert = ({route,navigation}) => {
     const nom = route.params.reseauNom
     const image = route.params.reseauImage
+    const userName = route.params.userName
+    const userPhone = route.params.userPhone
+
   return (
     <View style={styles.container}>
         <Header
@@ -15,12 +18,20 @@ const PageRecharge = ({route,navigation}) => {
                 </TouchableOpacity>
             }
             centerComponent={
-                <Text style={{color:"white", fontSize:19,}}>Recharger mon compte</Text>
+                <Text style={{color:"white", fontSize:19,}}>Transferer de l'argent</Text>
             }
         />
         <View style={{flex:1, padding:10}}>
             <Image source={{uri:image}} style={{width:130, height:130, alignSelf:'center', marginBottom:15}} />
-            <TextInput label={`Numéro ${nom}`} keyboardType="number-pad" placeholder='Entrez le numero OM à débiter' style={{marginBottom:10, height:60, backgroundColor:"white"}} />
+            <View style={{alignItems:"center", backgroundColor:"#efefef", flexDirection:"row", borderRadius:6}}>
+                <View style={{width:40, alignItems: 'center', justifyContent: 'center', backgroundColor:"#efefef", borderRadius:20, height:40}}>
+                    <Icon name='person' />
+                </View>
+                <View style={{flex:1, alignSelf:"center",paddingTop:"2%"}}>
+                    <Text style={{textAlign:"center", fontSize:17, fontWeight:"bold"}}>{userName}</Text>
+                    <Text style={{textAlign:"center", fontSize:17, marginBottom:20, fontWeight:"bold"}}>{userPhone}</Text>            
+                </View>
+            </View>
             <TextInput label='Montant à recharger' keyboardType="number-pad" placeholder='Entrez le montant' style={{marginBottom:10, height:60, backgroundColor:"white"}} />
             <TextInput label='Code OTP' keyboardType="number-pad" placeholder='Entrez le code OTP' style={{marginBottom:10, height:60, backgroundColor:"white"}} />
 
@@ -35,7 +46,7 @@ const PageRecharge = ({route,navigation}) => {
   )
 }
 
-export default PageRecharge
+export default PageAutreTransfert
 
 const styles = StyleSheet.create({
     container:{

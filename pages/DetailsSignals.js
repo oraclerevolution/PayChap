@@ -6,7 +6,7 @@ const DetailsSignals = () => {
     return (
         <View style={{flex:1}}>
             <Header
-                centerComponent={{ text: 'SIGNAL GBPUSD', style: { color: '#fff', fontSize:20 } }}
+                centerComponent={{ text: 'SIGNAL GBPUSD', style: { color: '#fff', fontSize:19 } }}
             />
             <View style={styles.container}>
                  <View style={styles.blocStyle}>

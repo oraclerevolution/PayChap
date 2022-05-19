@@ -32,16 +32,40 @@ import ServiceRechargement from './pages/Rechargement/ServiceRechargement';
 import PageRecharge from './pages/Rechargement/PageRecharge';
 import PasswordConfirm from './pages/PasswordConfirm';
 import FileUploadSignUp from './pages/FileUploadSignUp';
+import TransfertINter from './pages/TransfertNational/TransfertINter';
+import AjouterNumero from './pages/TransfertNational/AjouterNumero';
+import TransferInternational from './pages/TransfertNational/TransferInternational';
+import PageAutreTransfert from './pages/TransfertNational/PageAutreTransfert';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import PasswordChooseLogin from './pages/PasswordChooseLogin'
 
-//creation de la navigation stack
-const NavigationStack = createStackNavigator();
+export default function App() {
 
-//reation de la navigation tabs
-const NavigationTabs = createBottomTabNavigator();
+  const [token, setToken ]= React.useState(-1)
+  const [p_identifiant, setIdentifiant] = React.useState('vide')
+    React.useEffect(()=> {
+        async function loadId() {
+          const recupToken = await AsyncStorage.getItem('userToken');
+          setToken(recupToken || "vide");
+        }
+        loadId();
 
-const NavigatorTabScreen = () => (
-  <NavigationTabs.Navigator initialRouteName={"Portefeuille"}
-    screenOptions={({ route }) => ({
+        async function loadIdentifiant(){
+          const p_identifiant = await AsyncStorage.getItem('userId')
+          setIdentifiant(p_identifiant)
+          console.log(p_identifiant)
+        }
+    },[])
+
+    //creation de la navigation stack
+  const NavigationStack = createStackNavigator();
+
+  //reation de la navigation tabs
+  const NavigationTabs = createBottomTabNavigator();
+
+  const NavigatorTabScreen = () => (
+    <NavigationTabs.Navigator initialRouteName={"Portefeuille"}
+      screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
@@ -69,9 +93,7 @@ const NavigatorTabScreen = () => (
   </NavigationTabs.Navigator>
 )
 
-export default function App() {
-  return (
-    <NavigationContainer>
+  const NavigationNewUser = () => (
       <NavigationStack.Navigator headerMode="none" initialRouteName={"Accueil"}>
         <NavigationStack.Screen name="Accueil" component={AccueilPage} />
         <NavigationStack.Screen name="Steppers" component={SteppersPage} />
@@ -95,9 +117,57 @@ export default function App() {
         <NavigationStack.Screen name="DetailsSignals" component={DetailsSignals} />
         <NavigationStack.Screen name="Tabs" component={NavigatorTabScreen} />
         <NavigationStack.Screen name="FileUploadInscription" component={FileUploadSignUp} />
-
+        <NavigationStack.Screen name="TransfertInter" component={TransfertINter} />
+        <NavigationStack.Screen name="AjouterNumero" component={AjouterNumero} />
+        <NavigationStack.Screen name="Repertoire" component={TransferInternational} />
+        <NavigationStack.Screen name="PageAutresTransfert" component={PageAutreTransfert} />
       </NavigationStack.Navigator>
-    </NavigationContainer>
-  );
+  )
+
+  const NavigationOldUser = () => (
+    <NavigationStack.Navigator headerMode="none" initialRouteName={"Password"}>
+        <NavigationStack.Screen name="Accueil" component={AccueilPage} />
+        <NavigationStack.Screen name="Steppers" component={SteppersPage} />
+        <NavigationStack.Screen name="Login" component={LoginPage} />
+        <NavigationStack.Screen name="ScreenOTP" component={ScreenOTP} />
+        <NavigationStack.Screen name="PasswordConfirm" component={PasswordConfirm} />
+        <NavigationStack.Screen name="Forms" component={FormsData} />
+        <NavigationStack.Screen name="Facture" component={Factures} />
+        <NavigationStack.Screen name="PaiementCanal" component={PaiementCanal} />
+        <NavigationStack.Screen name="ChooseTransfer" component={ChooseTransfer} />
+        <NavigationStack.Screen name="TransfertNational" component={TransferNational} />
+        <NavigationStack.Screen name="TransfertNatMontant" component={PageTransfert} />
+        <NavigationStack.Screen name="ServiceRechargement" component={ServiceRechargement} />
+        <NavigationStack.Screen name="PageRecharge" component={PageRecharge} />
+        <NavigationStack.Screen name="Pricing" component={PricingPage} />
+        <NavigationStack.Screen name="Checkout" component={Checkout} />
+        <NavigationStack.Screen name="Preuves" component={PreuvesPaiement} />
+        <NavigationStack.Screen name="Historiques" component={HistoriquesTradesPage} />
+        <NavigationStack.Screen name="Password" component={PasswordChooseLogin} />
+        <NavigationStack.Screen name="Signals" component={Signal} />
+        <NavigationStack.Screen name="DetailsSignals" component={DetailsSignals} />
+        <NavigationStack.Screen name="Tabs" component={NavigatorTabScreen} />
+        <NavigationStack.Screen name="FileUploadInscription" component={FileUploadSignUp} />
+        <NavigationStack.Screen name="TransfertInter" component={TransfertINter} />
+        <NavigationStack.Screen name="AjouterNumero" component={AjouterNumero} />
+        <NavigationStack.Screen name="Repertoire" component={TransferInternational} />
+        <NavigationStack.Screen name="PageAutresTransfert" component={PageAutreTransfert} />
+      </NavigationStack.Navigator>
+  )
+
+  if(token == "old"){
+    return(
+      <NavigationContainer>
+        <NavigationOldUser />
+      </NavigationContainer>
+    )
+  }else{
+    return(
+      <NavigationContainer>
+        <NavigationNewUser />
+      </NavigationContainer>
+    )
+  }
+  
 }
 

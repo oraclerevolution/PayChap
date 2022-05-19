@@ -6,7 +6,7 @@ const HistoriquesTradesPage = () => {
     return (
         <View style={{flex:1}}>
                 <Header
-                    centerComponent={{ text: 'HISTORIQUES', style: { color: '#fff', fontSize:20 } }}
+                    centerComponent={{ text: 'HISTORIQUES', style: { color: '#fff', fontSize:19 } }}
                 />
                 <View style={styles.container}>
                     <Text>Page des historiques</Text>

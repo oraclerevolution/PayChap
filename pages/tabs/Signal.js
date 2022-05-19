@@ -45,7 +45,7 @@ const SignalPage = () => {
     return (
         <View style={{flex:1}}>
                 <Header
-                    centerComponent={{ text: 'SIGNAUX GRATUITS', style: { color: '#fff', fontSize:20 } }}
+                    centerComponent={{ text: 'SIGNAUX GRATUITS', style: { color: '#fff', fontSize:19 } }}
                 />
                 <View style={styles.container}>
                      <FlatList

@@ -5,11 +5,13 @@ import { Avatar, Searchbar } from 'react-native-paper'
 import { FONTS, SIZES, COLORS } from '../../constants/theme'
 import { Header, Icon } from 'react-native-elements'
 
-const TransferNational = ({route, navigation}) => {
+const TransferInternational = ({route, navigation}) => {
 
     const [contact, SetContact] = useState()
     const [searchQuery, setSearchQuery] = React.useState('');
-    
+    const title = route.params.reseauTitle
+    const image = route.params.reseauImage
+
     useEffect(() => {
         (async () => {
           const { status } = await Contacts.requestPermissionsAsync();
@@ -20,7 +22,6 @@ const TransferNational = ({route, navigation}) => {
             
             if (data.length > 0) {
               SetContact(data)
-              console.log(contact)
             }
           }
         })();
@@ -49,9 +50,11 @@ const TransferNational = ({route, navigation}) => {
         const renderItem = ({ item }) => (
             <TouchableOpacity
                 style={{ marginBottom: 2, width: "90%", alignItems: 'center', margin:10, flexDirection: 'row', }}
-                onPress={()=> navigation.navigate('TransfertNatMontant',{
+                onPress={()=> navigation.navigate('PageAutresTransfert',{
                     userName: item.name,
-                    userPhone: item.phoneNumbers && item.phoneNumbers[0] && item.phoneNumbers[0].number
+                    userPhone: item.phoneNumbers && item.phoneNumbers[0] && item.phoneNumbers[0].number,
+                    reseauNom: title,
+                    reseauImage: image
                 })}
             >
                 <View style={{width:40, alignItems: 'center', justifyContent: 'center', backgroundColor:"#efefef", borderRadius:20, height:40}}>
@@ -84,7 +87,7 @@ const TransferNational = ({route, navigation}) => {
                 </TouchableOpacity>
             }
             centerComponent={
-                <Text style={{color:"white",fontSize:19}}>Envoyer de l'argent</Text>
+                <Text style={{color:"white",fontSize:19}}>Transferer de l'argent</Text>
             }
       />
         <View style={{flex:1, padding:10}}>
@@ -94,7 +97,7 @@ const TransferNational = ({route, navigation}) => {
   )
 }
 
-export default TransferNational
+export default TransferInternational
 
 const styles = StyleSheet.create({
     container:{

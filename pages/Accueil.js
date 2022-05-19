@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import { Button } from 'react-native-paper';
 
 const AccueilPage = ({ navigation }) => {
+
     return (
         <View style={styles.container}>
             <View style={{flex:1.5, justifyContent: 'center',alignItems:'center'}}>

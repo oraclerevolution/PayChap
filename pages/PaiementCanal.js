@@ -8,7 +8,7 @@ const PaiementCanal = () => {
     <View style={styles.container}>
         <Header
             centerComponent={
-                <Text style={{color:"white",fontSize:20}}>Facture Canal+</Text>
+                <Text style={{color:"white",fontSize:19}}>Facture Canal+</Text>
             }
         />
         <View style={{flex:1,justifyContent: 'center', alignItems: 'center', padding:6}}>

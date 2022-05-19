@@ -3,11 +3,11 @@ import { Text, StyleSheet, View,StatusBar, SafeAreaView, Image,TouchableOpacity,
 import { Header,Icon } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const PasswordChoose = ({navigation, route}) => {
+const PasswordChooseLogin = ({navigation, route}) => {
+    const [identifiant, setIdentifiant] = React.useState('');
     const [passcode, setPasscode] = useState(['','','','']);
         const [accessToken, setAccessToken] = React.useState('')
     let numbers = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:0}]
-    const {identifiant} = route.params
 
     function onPressNumber(num) {
         let tempCode = passcode;
@@ -35,6 +35,11 @@ const PasswordChoose = ({navigation, route}) => {
         setPasscode(tempCode)
     }
 
+    const setData = async (data) =>{
+      const json = await AsyncStorage('userData', data)
+      console.log('data set')
+    }
+
     function login(){
       const url = "http://18.218.229.67/paychap/c001/getbalancewithsecretcode"
       return fetch(url, {
@@ -44,7 +49,7 @@ const PasswordChoose = ({navigation, route}) => {
           Authorization: "Bearer " + accessToken
         },
         body: JSON.stringify({
-          "p_idpaychap":identifiant, 
+          "p_idpaychap":identifiant._W, 
           "p_secret":passcode.join('')
         })
       }).then((response) => response.json()).then((responseData)=>{
@@ -53,6 +58,7 @@ const PasswordChoose = ({navigation, route}) => {
           setPasscode(['','','',''])
         }else{
           if(responseData.r_statut == 200){
+            setData(responseData)
             navigation.navigate('Tabs')
           }
         }
@@ -73,12 +79,20 @@ const PasswordChoose = ({navigation, route}) => {
         }else if(passcode > 4){
           Alert.alert('Attention', "Mauvaise saisie du mot de passe")
         }else{
-          console.log(identifiant)
           login()
         }
     }
 
+    const getIdentifiant = async () => {
+      const value = AsyncStorage.getItem('userId')
+      if(value == ""){
+        console.log('valeur introuvable')
+      }else{
+        setIdentifiant(value)
+      }
+    }
     React.useEffect(()=>{
+      getIdentifiant()
       //generate access token
       const client_id = 'ITCLT11'
       const client_secret = '$1$WZVi4eh.$V5CEAhtD2Y1UJp0LQ.1KR0'
@@ -231,4 +245,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PasswordChoose
+export default PasswordChooseLogin

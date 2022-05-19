@@ -1,11 +1,26 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView } from 'react-native'
-import { Header } from 'react-native-elements'
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, ScrollView, SafeAreaView, Animated } from 'react-native'
+import { Header, Icon } from 'react-native-elements'
 import { FONTS, SIZES, COLORS } from '../../constants/theme'
 import icons from '../../constants/icons'
-import CreditCardUI from "rn-credit-card-ui";
+import CreditCardUI from "rn-credit-card-ui"; 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const Home = ({navigation}) => {
+const Home = ({navigation, route}) => {
+
+    const [features, setFeatures] = React.useState(featuresData)
+    const [userData, setUserData] = React.useState(null)
+
+    const getUserData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('userData')
+        setUserData(JSON.parse(jsonValue))
+        console.log(JSON.parse(jsonValue))
+      } catch(e) {
+        console.log('erreur ' + e)
+      }
+    }
+
     const featuresData = [
         {
             id: 1,
@@ -69,11 +84,46 @@ const Home = ({navigation}) => {
             title: "À Jean Gontran",
             montant:-1350,
             date: "12 avril 2020"
+        },
+        {
+            id: 7,
+            title: "À Assia Jean",
+            montant:-7350,
+            date: "4 mars 2022"
+        },
+        {
+            id: 8,
+            title: "À David de Paul",
+            montant:-6350,
+            date: "1 janvier 2021"
+        },
+        {
+            id: 9,
+            title: "À Jean Gontran",
+            montant:-1350,
+            date: "12 avril 2020"
+        },
+        {
+            id: 10,
+            title: "À N'Goran Assia",
+            montant:-1350,
+            date: "12 avril 2020"
+        },
+        {
+            id: 11,
+            title: "À Jean Gontran",
+            montant:-1350,
+            date: "12 avril 2020"
+        },
+        {
+            id: 12,
+            title: "À Jean Gontran",
+            montant:-1350,
+            date: "12 avril 2020"
         }
     ]
 
-    const [features, setFeatures] = React.useState(featuresData)
-
+    
     function renderFeatures() {
 
         const Header = () => (
@@ -155,7 +205,7 @@ const Home = ({navigation}) => {
                     padding:3
                 }}>
                     <Text style={{
-                        fontSize:18,
+                        fontSize:16,
                         fontWeight:"bold",
                         color:"#7a7a7a"
                     }}>{item.title}</Text>
@@ -170,8 +220,7 @@ const Home = ({navigation}) => {
                 }}>
                     <Text style={{
                         fontSize:13,
-                        fontWeight:"bold",
-                        color:"#f03737",
+                        color:"#000",
                         textAlign:"center"
                     }}>{item.montant} F CFA</Text>
                 </View>
@@ -190,35 +239,67 @@ const Home = ({navigation}) => {
         )
     }
 
+    React.useEffect(()=>{
+      getUserData()
+    },[])
+
+    let AnimatedHeaderValue = new Animated.Value(0);
+    const Header_Max_Height = 100;
+    const Header_Min_Height = 80;
+
+    const animateHeaderBackgroundColor = AnimatedHeaderValue.interpolate({
+    inputRange: [0, Header_Max_Height - Header_Min_Height],
+    outputRange: ['white', 'white'],
+    extrapolate: 'clamp'
+    });
+
+    const animateHeaderHeight = AnimatedHeaderValue.interpolate({
+    inputRange: [0, Header_Max_Height - Header_Min_Height],
+    outputRange: [Header_Max_Height, Header_Min_Height],
+    extrapolate: 'clamp'
+    })
+
     return(
-        <View style={styles.container}>
-            <ScrollView style={{flex:1,width:"100%"}}>
-                <View style={{flex:2}}>
+        <SafeAreaView>
+            <Animated.View 
+                style={[
+                    styles.header,
+                    {
+                    height: animateHeaderHeight,
+                    backgroundColor: animateHeaderBackgroundColor
+                    }
+                ]}
+            >
+                <Text style={{fontSize:21, fontWeight:"bold"}}>20 000 FCFA</Text>
+            </Animated.View>
+            <ScrollView
+                scrollEventThrottle={16}
+                onScroll={Animated.event(
+                    [{nativeEvent: {contentOffset: {y: AnimatedHeaderValue}}}],
+                    {useNativeDriver: false}
+                )}
+            >
+                <View>
                     <CreditCardUI 
                         creditCardNumber="4242424242424242"
                         cardCVC="123"
-                        cardHolderGender="miss"
-                        cardHolderName="Maria James"
+                        cardHolderGender="MR"
+                        cardHolderName="THOMAS EDISON"
                         cardExpiryDate="11/23"
                         frontImg={require('../../assets/images/card-front.png')} // or require("")
                         backImg={require('../../assets/images/card-back.png')}
                         textColor="yellow"
                         secureCardNbr={true}
                     />
-                    <View style={{justifyContent: 'center',alignItems: 'center', marginBottom:"-4%"}}>
-                        <Text style={{color:"gray"}}>Votre solde</Text>
-                        <Text style={{fontSize:21, fontWeight:"bold"}}>20 000 FCFA</Text>
-                    </View>
-                    <View style={{alignItems: 'center', justifyContent: "flex-end", position:"relative", top:"-8%"}}>
+                    <View style={{alignItems: 'center', justifyContent: "flex-end", position:"relative", top:"-10%"}}>
                         {renderFeatures()}
                     </View>
                 </View>
-                <View style={{flex:1, position:"relative", top:-15}}>
+                <View style={{position:"relative", top:-15}}>
                     {Historiques()}
                 </View>
-                
             </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 
 }
@@ -228,10 +309,22 @@ export default Home
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        marginTop:25,
-        backgroundColor: "white",
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingTop:20,
-    }
+    },
+    header:{
+        justifyContent:"center",
+        alignItems:"center",
+        left:0,
+        right:0,
+        top:12
+      },
+      headerText:{
+        color:"#fff",
+        fontSize:18,
+        textAlign:"center",
+      },
+      headerTextMin:{
+        color:"#fff",
+        fontSize:16,
+        textAlign:"center",
+      }
 })
