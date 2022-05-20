@@ -9,166 +9,10 @@ import Moment from 'moment';
 
 const Home = ({navigation, route}) => {
 
-    const [features, setFeatures] = React.useState(featuresData)
     const [userData, setUserData] = React.useState({})
     const [historique, setHistorique] = React.useState([])
     const [accessToken, setAccessToken] = React.useState('')
     const [identifiant, setIdentifiant] = React.useState('')
-
-    const featuresData = [
-        {
-            id: 1,
-            icon: icons.reload,
-            color: "purple",
-            backgroundColor: "purple",
-            description: "Recharger",
-            page: "ServiceRechargement"
-        },
-        {
-            id: 2,
-            icon: icons.send,
-            color: "black",
-            backgroundColor: "black",
-            description: "Transfert",
-            page:"ChooseTransfer"
-        },
-        {
-            id: 3,
-            icon: icons.internet,
-            color: "green",
-            backgroundColor: "green",
-            description: "Factures",
-            page:"Facture"
-        }
-    ]
-
-    const specialPromoData = [
-        {
-            id: 1,
-            title: "À Assia Jean",
-            montant:-7350,
-            date: "4 mars 2022"
-        },
-        {
-            id: 2,
-            title: "À David de Paul",
-            montant:-6350,
-            date: "1 janvier 2021"
-        },
-        {
-            id: 3,
-            title: "À Jean Gontran",
-            montant:-1350,
-            date: "12 avril 2020"
-        },
-        {
-            id: 4,
-            title: "À N'Goran Assia",
-            montant:-1350,
-            date: "12 avril 2020"
-        },
-        {
-            id: 5,
-            title: "À Jean Gontran",
-            montant:-1350,
-            date: "12 avril 2020"
-        },
-        {
-            id: 6,
-            title: "À Jean Gontran",
-            montant:-1350,
-            date: "12 avril 2020"
-        },
-        {
-            id: 7,
-            title: "À Assia Jean",
-            montant:-7350,
-            date: "4 mars 2022"
-        },
-        {
-            id: 8,
-            title: "À David de Paul",
-            montant:-6350,
-            date: "1 janvier 2021"
-        },
-        {
-            id: 9,
-            title: "À Jean Gontran",
-            montant:-1350,
-            date: "12 avril 2020"
-        },
-        {
-            id: 10,
-            title: "À N'Goran Assia",
-            montant:-1350,
-            date: "12 avril 2020"
-        },
-        {
-            id: 11,
-            title: "À Jean Gontran",
-            montant:-1350,
-            date: "12 avril 2020"
-        },
-        {
-            id: 12,
-            title: "À Jean Gontran",
-            montant:-1350,
-            date: "12 avril 2020"
-        }
-    ]
-
-    
-    function renderFeatures() {
-
-        const Header = () => (
-            <View style={{ marginBottom: SIZES.padding * 2 }}>
-                <Text></Text>
-            </View>
-        )
-
-        const renderItem = ({ item }) => (
-            <TouchableOpacity
-                style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center', margin:10}}
-                onPress={() => navigation.navigate(item.page)}
-            >
-                <View
-                  style={{
-                      height: 60,
-                      width: 60,
-                      marginBottom: 5,
-                      borderRadius: 20,
-                      borderWidth:1.2,
-                      borderColor: item.backgroundColor,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                  }}
-                >
-                    <Image
-                        source={item.icon}
-                        resizeMode="contain"
-                        style={{
-                          height: 20,
-                          width: 20,
-                          tintColor: item.color
-                        }}
-                    />
-                </View>
-                <Text style={{ textAlign: 'center', width:100, flexWrap: 'wrap',}}>{item.description}</Text>
-            </TouchableOpacity>
-        )
-
-        return (
-            <FlatList
-                ListHeaderComponent={Header}
-                data={features}
-                numColumns={3}
-                columnWrapperStyle={{ justifyContent: 'space-between' }}
-                keyExtractor={item => `${item.id}`}
-                renderItem={renderItem}
-                style={{ marginTop: SIZES.padding * 2 }}
-            />
-        )
-    }
 
     function Historiques(){
         const Header = () => (
@@ -178,7 +22,7 @@ const Home = ({navigation, route}) => {
             }}
         >
                 <View style={{ flex: 1 }}>
-                    <Text>Mes dernières transactions</Text>
+                    <Text style={{fontSize:17}}>Mes dernières transactions</Text>
                 </View>
                 <TouchableOpacity
                     onPress={() => console.log("okokok")}
@@ -279,28 +123,6 @@ const Home = ({navigation, route}) => {
       })
     }
 
-    function getAccessToken(){
-      const client_id = 'ITCLT11'
-      const client_secret = '$1$WZVi4eh.$V5CEAhtD2Y1UJp0LQ.1KR0'
-      
-      const baseHeaders = {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': "Basic " + ArrayBuffer.toString(client_id, client_secret)
-      };
-
-      const params = "grant_type=client_credentials&client_secret=$1$WZVi4eh.$V5CEAhtD2Y1UJp0LQ.1KR0&client_id=ITCLT11";
-      const url = "http://18.218.229.67/paychap/gettoken?grant_type=client_credentials&client_secret=$1$WZVi4eh.$V5CEAhtD2Y1UJp0LQ.1KR0&client_id=ITCLT11"
-
-      return fetch(url,{
-        method: "POST",
-        body: params,
-        headers: baseHeaders
-      }).then((response) => response.json()).then((responsetokenJson) => {
-        const token = responsetokenJson.access_token
-        setAccessToken(token)
-      })
-    }
-
     const backAction = () => {
       Alert.alert('Attention !', "Etes vous sûr de vouloir fermer l'application", [
         {
@@ -388,8 +210,91 @@ const Home = ({navigation, route}) => {
                         textColor="yellow"
                         secureCardNbr={true}
                     />
-                    <View style={{alignItems: 'center', justifyContent: "flex-end", position:"relative", top:"-10%", borderWidth:2, borderColor:"red"}}>
-                        {renderFeatures()}
+                    <View style={{alignItems: 'center', justifyContent: "center", position:"relative", top:"-10%", borderWidth:2, borderColor:"red", flexDirection:"row"}}>
+                        <TouchableOpacity
+                            style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center', margin:10}}
+                            onPress={() => navigation.navigate('ServiceRechargement')}
+                        >
+                            <View
+                              style={{
+                                  height: 60,
+                                  width: 60,
+                                  marginBottom: 5,
+                                  borderRadius: 20,
+                                  borderWidth:1.2,
+                                  borderColor: 'purple',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                              }}
+                            >
+                                <Image
+                                    source={icons.reload}
+                                    resizeMode="contain"
+                                    style={{
+                                      height: 20,
+                                      width: 20,
+                                      tintColor: "purple"
+                                    }}
+                                />
+                            </View>
+                            <Text style={{ textAlign: 'center', width:100, flexWrap: 'wrap',}}>Recharger</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center', margin:10}}
+                            onPress={() => navigation.navigate('ChooseTransfer')}
+                        >
+                            <View
+                              style={{
+                                  height: 60,
+                                  width: 60,
+                                  marginBottom: 5,
+                                  borderRadius: 20,
+                                  borderWidth:1.2,
+                                  borderColor: 'black',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                              }}
+                            >
+                                <Image
+                                    source={icons.send}
+                                    resizeMode="contain"
+                                    style={{
+                                      height: 20,
+                                      width: 20,
+                                      tintColor: "black"
+                                    }}
+                                />
+                            </View>
+                            <Text style={{ textAlign: 'center', width:100, flexWrap: 'wrap',}}>Transfert</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center', margin:10}}
+                            onPress={() => navigation.navigate('Facture')}
+                        >
+                            <View
+                              style={{
+                                  height: 60,
+                                  width: 60,
+                                  marginBottom: 5,
+                                  borderRadius: 20,
+                                  borderWidth:1.2,
+                                  borderColor: 'green',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
+                              }}
+                            >
+                                <Image
+                                    source={icons.internet}
+                                    resizeMode="contain"
+                                    style={{
+                                      height: 20,
+                                      width: 20,
+                                      tintColor: "green"
+                                    }}
+                                />
+                            </View>
+                            <Text style={{ textAlign: 'center', width:100, flexWrap: 'wrap',}}>Factures</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <View style={{position:"relative", top:-15}}>
