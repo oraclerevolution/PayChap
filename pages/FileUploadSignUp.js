@@ -86,13 +86,7 @@ const FileUploadSignUp = ({navigation, route}) => {
 
   return (
     <View style={{flex:1}}>
-        <Header
-            leftComponent={
-                <TouchableOpacity onPress={()=> navigation.goBack()}>
-                    <Icon size={23} name="arrow-back" color="#fff" />
-                </TouchableOpacity>
-            }
-        />
+        <Header />
         <View style={styles.container}>
             <Text style={{fontSize:18, color:"black", marginBottom:10}}>Chargez votre pièce d'identité</Text>
             <TouchableOpacity onPress={PickImage} style={{backgroundColor:"#efefef", borderRadius:5, borderWidth:1, width:300, height:200, justifyContent:"center", alignItems: 'center', margin:10}}>

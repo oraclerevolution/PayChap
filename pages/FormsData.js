@@ -5,6 +5,7 @@ import { Header, Icon } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import OTPTextInput from "react-native-otp-textinput"
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {MailComposer} from 'expo'
 
 const FormsData = ({navigation, route}) => {
     const [checked, setChecked] = React.useState('M');
@@ -20,12 +21,20 @@ const FormsData = ({navigation, route}) => {
     const storeData = async () => {
       try{
         await AsyncStorage.setItem('userToken', 'old')
-        console.log('usertoken set')
         await AsyncStorage.setItem('userId', number)
-        console.log('userId set')
+        await AsyncStorage.setItem('userPassword', code)
       } catch (e) {
         console.log("erreur" + e)
       }
+    }
+
+    function sendEmailConfirmation(){
+      MailComposer.composeAsync({
+        recipients: 
+        [email],
+        subject: 'Inscription PayChap',
+        body: `Bienvenue sur PayChap, votre login est ${number} et votre mot de passe est celui que vous avez utilisé lors de l'enregistrement. L'équipe PayChap`,
+      });
     }
 
     function confirmRegistration(){
@@ -47,6 +56,7 @@ const FormsData = ({navigation, route}) => {
       }).then((response) => response.json()).then((responseData)=>{
         if(responseData.Error == '401'){
           storeData()
+          sendEmailConfirmation()
           //Alert.alert('Attention', "Une erreur s'est produite ! Veuillez recommencez s'il vous plaît")
           navigation.navigate('FileUploadInscription',{
             identifiant: number,

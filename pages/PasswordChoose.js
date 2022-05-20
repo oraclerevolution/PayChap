@@ -35,6 +35,11 @@ const PasswordChoose = ({navigation, route}) => {
         setPasscode(tempCode)
     }
 
+    async function storeData(){
+      await AsyncStorage.setItem('userId',identifiant)
+      await AsyncStorage.setItem('userPassword', passcode.join(''))
+    }
+
     function login(){
       const url = "http://18.218.229.67/paychap/c001/getbalancewithsecretcode"
       return fetch(url, {
@@ -53,6 +58,7 @@ const PasswordChoose = ({navigation, route}) => {
           setPasscode(['','','',''])
         }else{
           if(responseData.r_statut == 200){
+            storeData()
             navigation.navigate('Tabs')
           }
         }

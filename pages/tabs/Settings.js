@@ -3,9 +3,27 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import {Button, List} from 'react-native-paper'
 import {Header, ListItem, Avatar,Button as Btn} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SettingsPage = ({ navigation }) => {
 
+    const [identifiant, setIdentifiant] = React.useState('')
+    const [logoutText, setLogoutText] = React.useState('')
+
+    async function logout(){
+      await AsyncStorage.removeItem('userId')
+      navigation.navigate('Login')
+    }
+
+    async function getUserId(){
+      const number = await AsyncStorage.getItem('userId')
+      setIdentifiant(number)
+      setLogoutText('Se deconnecter ('+number + ')')
+    }
+
+    React.useEffect(()=>{
+      getUserId()
+    },[])
     return (
         <View style={{flex:1,paddingTop:15}}>
             <View style={styles.container}>
@@ -35,8 +53,9 @@ const SettingsPage = ({ navigation }) => {
                         left={props => <List.Icon {...props} icon="trophy" />}
                     />
                     <List.Item
-                        title="Se déconnecter (0709483463)"
+                        title={logoutText}
                         left={props => <List.Icon {...props} icon="logout" />}
+                        onPress={logout}
                     />
                 </View>
                 <View style={{flex:1, justifyContent:"flex-end", alignItems:"center"}}>

@@ -35,7 +35,7 @@ const PasswordChooseLogin = ({navigation, route}) => {
         setPasscode(tempCode)
     }
 
-    const setData = async (data) =>{
+    const paramsData = async (data) =>{
       const json = await AsyncStorage('userData', data)
       console.log('data set')
     }
@@ -58,7 +58,7 @@ const PasswordChooseLogin = ({navigation, route}) => {
           setPasscode(['','','',''])
         }else{
           if(responseData.r_statut == 200){
-            setData(responseData)
+            paramsData(responseData)
             navigation.navigate('Tabs')
           }
         }
@@ -151,7 +151,7 @@ const PasswordChooseLogin = ({navigation, route}) => {
                 </View>
             </View>
             <View style={styles.buttons}>
-                <TouchableOpacity onPress={()=> onPressCancel()}>
+                <TouchableOpacity onPress={()=> eraseToken()}>
                     <Text style={styles.buttonText}>Effacer</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=> redirect()}>

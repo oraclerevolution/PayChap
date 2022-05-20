@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Paychap",
-    "slug": "Paychap",
-    "version": "1.8.0",
+    "name": "PayChap",
+    "slug": "PayChap",
+    "version": "1.9.0",
     "orientation": "portrait",
     "icon": "./assets/logowallet.png",
     "splash": {
@@ -24,7 +24,7 @@
         "foregroundImage": "./assets/logowallet.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.oracle_codeur.WalletTest"
+      "package": "com.oracle_codeur.PayChap"
     },
     "web": {
       "favicon": "./assets/favicon.png"
