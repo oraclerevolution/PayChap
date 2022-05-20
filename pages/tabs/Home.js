@@ -210,7 +210,7 @@ const Home = ({navigation, route}) => {
                         textColor="yellow"
                         secureCardNbr={true}
                     />
-                    <View style={{alignItems: 'center', justifyContent: "center", position:"relative", top:"-10%", borderWidth:2, borderColor:"red", flexDirection:"row"}}>
+                    <View style={{alignItems: 'center', justifyContent: "center", position:"relative", top:"-10%", flexDirection:"row"}}>
                         <TouchableOpacity
                             style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center', margin:10}}
                             onPress={() => navigation.navigate('ServiceRechargement')}
